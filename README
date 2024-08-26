@@ -1,0 +1,53 @@
+This is a standalone version of Richard Stevens' "sock" program, based
+on the code available for the UNIX Network Programming book, at:
+
+  http://www.kohala.com/start/unpv12e.html
+
+I found this version at
+
+  http://ttcplinux.sourceforge.net/tools/tools.html
+
+and cleaned up the tarball a bit. To make sock a little easier to
+find, I'm now hosting it on a dedicated webpage:
+
+  http://www.icir.org/christian/sock.html
+
+I will implement minor updates to the code when I feel they make sense
+for reasons of clarity or educational value, but I won't make any other
+changes (such as additional features or similars).
+
+I'm happy to incorporate build fixes where feasible and necessary, but
+I do not give build support etc.
+
+						Enjoy,
+						Christian
+
+sock 编译
+
+安装 automake
+
+修改configure ，去掉版本限制：
+
+```
+ACLOCAL=${ACLOCAL-"${am_missing_run}aclocal-${am__api_version}"}
+
+AUTOMAKE=${AUTOMAKE-"${am_missing_run}automake-${am__api_version}"}  //去掉这个版本限制
+```
+
+configure 完后将 configure.in 重命名为configure.ac ，然后执行make
+
+
+
+https://www.icir.org/christian/sock.html 对应下载地址：https://www.icir.org/christian/downloads/sock-0.3.2.tar.gz
+
+example
+
+```
+// -O 9000 端口listen 后过 9 秒再 accept，这样有机会看到三次握手完成，但是在服务端全连接队里被填满
+// -T SO_REUSEPORT 可以冲用 time_wait/FIN_WAIT2 端口
+// -F fork 支持多个客户端
+// -K 启用 keepalive ，但是默认 net.ipv4.tcp_keepalive_time 为 7200，需要自己改小后快速触发 keepalive 包
+sock -q 1 -F -v -T -O 9000 -P 5000 -Q 3000 -i  -s 100.81.131.221 4321
+```
+
+
