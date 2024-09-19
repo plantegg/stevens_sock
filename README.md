@@ -41,7 +41,7 @@ Wireshark 里有个菜单就是用 Stevens 来命名的：Statistics->TCP Stream
 
 最下面两个窗口左右分别是 tcpdump 和 netstat/ss 命令用来查看状态
 
-![image-20240919154758343](https://cdn.jsdelivr.net/gh/plantegg/plantegg.github.io/images/951413iMgBlog/image-20240919154758343.png)
+![image-20240919154758343](./demo.png)
 
 ## 完整功能
 
